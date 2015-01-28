@@ -18,11 +18,13 @@ The Dockerfile in this project builds a Docker image in the static way.
 
 There are a few instructions in the Dockerfile that copy code from your current directory and package it up into the image.
 
-RUN mkdir -p /usr/src/app -- make a new directory
-ADD . /usr/src/app -- copy all of your current files into this directory
+`RUN mkdir -p /usr/src/app` -- make a new directory
 
-WORKDIR /usr/src/app -- set this new directory as the working directory
-RUN bundle install -- execute your bundle install within the app directory
+`ADD . /usr/src/app` -- copy all of your current files into this directory
+
+`WORKDIR /usr/src/app` -- set this new directory as the working directory
+
+`RUN bundle install` -- execute your bundle install within the app directory
 
 
 Build the Docker image by running ```docker build -t hello-world .```. You will see each layer of the image being downloaded.
