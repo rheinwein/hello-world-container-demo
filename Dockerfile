@@ -10,4 +10,4 @@ ADD . /usr/src/app
 WORKDIR /usr/src/app
 RUN bundle install
 
-CMD ["ruby hello_world.rb"]
+CMD ["ruby", "hello_world.rb"]
