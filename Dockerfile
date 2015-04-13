@@ -5,7 +5,7 @@ MAINTAINER CenturyLink Labs <clt-labs-futuretech@centurylink.com>
 EXPOSE 4567
 
 RUN mkdir -p /usr/src/app
-ADD . /usr/src/app
+COPY . /usr/src/app
 
 WORKDIR /usr/src/app
 RUN bundle install
