@@ -7,14 +7,14 @@ Before running this code, you need to install Docker. If you run OSX or Windows,
 
 ## Usage
 
-There are two different ways of developing with Docker. First is what I refer to as the *static container* way: running code inside a container that does not need to be modified during the course of development. Most likely, you'll use this style for dependencies, and also during QA and testing. In this type of container, the code is packaged up and you can't modify it after the image is built and the container is running.
+There are two different ways of developing with Docker. First is what I refer to as the *packaged container* way: running code inside a container that does not need to be modified during the course of development. Most likely, you'll use this style for dependencies, and also during QA and testing. In this type of container, the code is packaged up and you can't modify it after the image is built and the container is running.
 
-The *dynamic container* way is what you'll use when working on an application under active development. Instead of running an image with the code packaged up, you'll link the folders from your dev environment to the container by mounting them as a volume. You can work on the file on your local system and see the changes propogate all the way through the container.
+The *development container* way is what you'll use when working on an application under active development. Instead of running an image with the code packaged up, you'll link the folders from your dev environment to the container by mounting them as a volume. You can work on the file on your local system and see the changes propogate all the way through the container. A word of caution: generally, you should never use a container like this in production.
 
 
-### The Static Way
+### The Packaged Way
 
-The Dockerfile in this project builds a Docker image in the static way.
+The Dockerfile in this project builds a Docker image with all of the code packaged up.
 
 There are a few instructions in the Dockerfile that copy code from your current directory and package it up into the image.
 
@@ -40,9 +40,9 @@ The -p flag sets up a port binding rule of ```-p host_port:container_port``` . I
 After the port rules are set, you can access your application in your browser at localhost:4567.
 
 
-### The Dynamic Way
+### The Development Way
 
-Instead of packaging the code up inside the container, the dynamic way of creating a container will allow you to access and modify your code, and see those updates propogated to your browser.
+Instead of copying the code inside the container, it's possible to create an image that houses only the necessary configurations for your application. Then, instead of copying the code -- which prevents you from modifying it later -- you simply mount the files as a volume at runtime.
 
 If you've already built the previous hello-world image, great news! You have a ruby-base image, which is all you need to run a container in this way. If you haven't built a Docker image yet, modify the Dockerfile so that it only has one line.
 
@@ -71,3 +71,4 @@ This dynamic container concept can be applied to much larger projects as well, a
 [Installing Docker](https://docs.docker.com/installation/#installation)
 
 [Understanding Docker](https://docs.docker.com/introduction/understanding-docker/)
+
